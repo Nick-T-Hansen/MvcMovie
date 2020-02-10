@@ -8,6 +8,22 @@ namespace MvcMovie.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Genre = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Movie",
                 columns: table => new
                 {
@@ -27,6 +43,9 @@ namespace MvcMovie.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Book");
+
             migrationBuilder.DropTable(
                 name: "Movie");
         }
