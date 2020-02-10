@@ -15,9 +15,9 @@ namespace MvcMovie.Models
                     DbContextOptions<MvcMovieContext>>()))
             {
                 // Look for any movies.
-                if (context.Movie.Any())
+                if (context.Movie.Any() && context.Book.Any())
                 {
-                    return;   // DB has been seeded
+                    return; // DB has been seeded
                 }
 
                 context.Movie.AddRange(
@@ -57,6 +57,17 @@ namespace MvcMovie.Models
                         Price = 3.99M
                     }
                 );
+
+                context.Book.AddRange(
+                    new Book
+                    {
+                        FirstName = "Nick",
+                        LastName = "Hansen",
+                        Genre = "Horror",
+                        Title = "Nightmare on Elm Street"
+                    }
+                );
+
                 context.SaveChanges();
             }
         }
